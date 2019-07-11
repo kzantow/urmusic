@@ -1113,6 +1113,13 @@ window.addEventListener('load', function() {
 	}
 	
 	function processAudioFile(soundFile) {
+		try {
+			// https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
+			ctx. resume();
+		} catch(e){
+			console.error(e);
+		}
+
 		if(!soundFile.type.match('audio.*')) {
 			return;
 		}
