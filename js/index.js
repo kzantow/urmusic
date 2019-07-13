@@ -1019,6 +1019,8 @@ function loadFilePreset(f, setIt) {
 	reader.readAsText(f);
 }
 
+var ctx; // boo
+
 window.addEventListener('load', function() {
 	var requestAnimationFrame =
 		window.requestAnimationFrame ||
@@ -1029,7 +1031,7 @@ window.addEventListener('load', function() {
 	
 	var cvs = document.getElementById("cvs");
 	var gtx = cvs.getContext('2d');
-	var ctx = new AudioContext();
+	ctx = new AudioContext();
 	var scClientID = '09bfcfe5b0303000a41b9e9675c0cb47';
 	var spinnerOpts = {
 		lines: 8, // The number of lines to draw
@@ -1807,8 +1809,8 @@ window.addEventListener('load', function() {
 	highAnalyser = ctx.createAnalyser();
 	highAnalyser.fftSize = 2048;
 	
-	cvs.width = document.body.clientWidth;
-	cvs.height = document.body.clientHeight;
+	// cvs.width = document.body.clientWidth;
+	// cvs.height = document.body.clientHeight;
 	
 	cvs.addEventListener('dragover', function(e) {
 		e.stopPropagation();
