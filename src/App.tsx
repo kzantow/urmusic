@@ -2,12 +2,12 @@ import React from 'react';
 import './App.css';
 
 const audio = document.createElement('audio') as any;
-const works = audio && (audio.captureStream || audio.mozCaptureStream);
+const browserSupport = audio && (audio.captureStream || audio.mozCaptureStream);
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      {!works && (
+      {!browserSupport && (
         <div className="warningMessage">
           <header>
             <i className="fa fa-exclamation-triangle w3-large warnIcon"></i>
@@ -15,11 +15,12 @@ const App: React.FC = () => {
           </header>
           <p>
             This browser does not support the needed APIs.
+            <br/>
             This app works well with Chrome and Firefox.
           </p>
         </div>
       )}
-      {works && (
+      {browserSupport && (
         <div>
           <div style={{"display": "none"}}>
             <a id="downloader"></a>
