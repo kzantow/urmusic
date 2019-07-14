@@ -1,11 +1,16 @@
 import React from 'react';
 import './App.css';
+import SettingsNav from './SettingsNav';
+
+import settings from './Settings';
 
 const audio = document.createElement('audio') as any;
 const browserSupport = audio && (audio.captureStream || audio.mozCaptureStream);
 
 export class App extends React.Component {
   componentDidMount() {
+    console.log(settings);
+    
     for (const src of [
       //'https://connect.soundcloud.com/sdk/sdk-3.1.2.js',
       //'js/theplayer.js',
@@ -35,7 +40,7 @@ export class App extends React.Component {
           </div>
         )}
         {browserSupport && (
-          <div>
+          <>
             <div style={{"display": "none"}}>
               <a id="downloader"></a>
               <input type="file" id="fileChooser" multiple />
@@ -56,7 +61,9 @@ export class App extends React.Component {
               <h2>Drag a song here to get started</h2><br />
               <p>You can also paste a link in the SoundCloud menu on the top right corner</p>
             </nav>
-          </div>
+
+            <SettingsNav />
+          </>
         )}
       </div>
     );
