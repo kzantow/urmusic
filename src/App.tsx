@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css';
 
+const audio = document.createElement('audio') as any;
+const works = audio && (audio.captureStream || audio.mozCaptureStream);
+
 const App: React.FC = () => {
-  const audio = document.createElement('audio') as any;
-  const works = audio && (audio.captureStream || audio.mozCaptureStream);
   return (
     <div className="App">
       {!works && (
@@ -13,8 +14,8 @@ const App: React.FC = () => {
             <h5>Error</h5>
           </header>
           <p>
-          This browser does not support the needed APIs.
-          This app works well with Chrome and Firefox.
+            This browser does not support the needed APIs.
+            This app works well with Chrome and Firefox.
           </p>
         </div>
       )}
