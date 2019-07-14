@@ -658,19 +658,11 @@ select.ctrlInput {
 
 .warningMessage {
 	display: inline-block;
-	
 	position: fixed;
-	right: 0px;
-	bottom: 50px;
-	
+	left: 50%;
+	top: 50%;
 	width: 350px;
-	
-	margin-right: -350px;
-	
-	transition: margin-right 100ms;
-	-o-transition: margin-right 100ms;
-	-moz-transition: margin-right 100ms;
-	-webkit-transition: margin-right 100ms;
+	transform: translate(-50%,-50%);
 }
 
 .warningMessage header {
@@ -691,36 +683,13 @@ select.ctrlInput {
 	margin: 4px;
 }
 
-.warningMessage header .close {
-	position: absolute;
-	right: 0%;
-	top: 50%;
-	
-	margin-right: 8px;
-	
-	padding: 4px;
-	
-	transform: translateY(-50%);
-	-o-transform: translateY(-50%);
-	-moz-transform: translateY(-50%);
-	-webkit-transform: translateY(-50%);
-	
-	transition: color 100ms;
-	-o-transition: color 100ms;
-	-moz-transition: color 100ms;
-	-webkit-transition: color 100ms;
-}
-
-.warningMessage header .close:hover {
-	color: #e74c3c;
-}
 
 .warningMessage header h5 {
 	display: inline-block;
 	
 	margin: 0px;
-}
 
+}
 .warningMessage p {
 	padding: 12px;
 	
