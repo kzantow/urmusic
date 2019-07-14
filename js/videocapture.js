@@ -79,7 +79,6 @@ function startRecording() {
       finalStream.addTrack(track);
     }
   } else if (audio.mozCaptureStream) {
-    // const audioStream = ctx.createMediaStreamDestination().stream;
     const audioStream = audio.mozCaptureStream();
     const audioTrack = audioStream.getTracks()[0];
     const canvasTrack = canvasStream.getTracks()[0];
