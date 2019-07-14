@@ -1021,7 +1021,7 @@ function loadFilePreset(f, setIt) {
 
 var ctx; // boo
 
-window.addEventListener('load', function() {
+(function() {
 	var requestAnimationFrame =
 		window.requestAnimationFrame ||
 		window.mozRequestAnimationFrame ||
@@ -1074,8 +1074,6 @@ window.addEventListener('load', function() {
 	var helpNav = document.getElementById('helpNav');
 	var thePlayer = document.getElementById('itsThePlayer');
 	
-	var firefoxIsBetter = document.getElementById('firefoxIsBetter');
-	var closeWarning = firefoxIsBetter.getElementsByClassName('close')[0];
 	var musicApps = document.getElementById('musicApps');
 	
 	var bottomMenuOpener = document.getElementById('bottomMenuOpener');
@@ -1688,12 +1686,6 @@ window.addEventListener('load', function() {
 		}
 	})();
 	
-	function warnIfNotFirefox() {
-		if(navigator.userAgent.indexOf('Firefox/') === -1) {
-			firefoxIsBetter.style.marginRight = '0px';
-		}
-	}
-	
 	function initSoundCloud() {
 		SC.initialize({
 			client_id: scClientID
@@ -1877,9 +1869,6 @@ window.addEventListener('load', function() {
 			presetMenu.classList.add('opened');
 		}
 	});
-	closeWarning.addEventListener('click', function() {
-		firefoxIsBetter.style.marginRight = '';
-	});
 	bottomMenuOpener.addEventListener('click', function() {
 		this.classList.toggle('closeMode');
 		thePlayer.classList.toggle('bottomMenuOpened');
@@ -1955,18 +1944,4 @@ window.addEventListener('load', function() {
 	loadPreset();
 	
 	loop();
-	
-	var relec = null;
-	if(window.require && (relec = window.require('electron'))) {
-		var args = relec.remote.process.argv;
-		if(args[1]) {
-			var title = args[1];
-			title = title.replace(/\\/g, '/');
-			title = title.substr(title.lastIndexOf('/') + 1, title.lastIndexOf('.'));
-			
-			processAudioDataURL(title, args[1]);
-		}
-	} else {
-		warnIfNotFirefox();
-	}
-});
+})();
