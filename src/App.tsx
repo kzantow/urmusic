@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import SettingsNav from './SettingsNav';
-
+import AudioPlayer from './AudioPlayer';
 import settings from './Settings';
 
 const audio = document.createElement('audio') as any;
@@ -44,11 +44,16 @@ export class App extends React.Component {
             <div style={{"display": "none"}}>
               <a id="downloader"></a>
               <input type="file" id="fileChooser" multiple />
-              
               <audio id="audioElement" loop></audio>
             </div>
             
-            <canvas id="cvs" origin-clean="false"></canvas>
+            <div className="preview">
+              <canvas className="preview" id="cvs"></canvas>
+              <AudioPlayer />
+            </div>
+
+            <canvas className="render" id="cvs"></canvas>
+
             <video id="recorded" playsInline loop></video>
             
             <div className="buttons">

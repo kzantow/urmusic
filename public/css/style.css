@@ -25,24 +25,24 @@ body {
 	background-color: black;
 }
 
-canvas {
-	display: inline-block;
-	
+div.preview {
 	position: fixed;
-	top: 100px;
-	left: 100px;
-	_right: 100px;
-	_bottom: 100px;
-	
-	_width: 100%;
-	_height: 100%;
-
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+canvas.preview {
+	display: inline-block;
 	width: 640px;
 	height: 480px;
-	
-	z-index: 0;
 }
-
+div.preview audio {
+	border-radius: 1px;
+	padding: 0;
+	display: block;
+	background: #000;
+	width: 100%;
+}
 video {
 	position: fixed;
 	top: 20px;
