@@ -50,13 +50,6 @@ video {
 	z-index: 1;
 }
 
-.buttons {
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	z-index: 2;
-}
-
 #settingsNav>header {
 	padding: 0px;
 	margin: 0px;

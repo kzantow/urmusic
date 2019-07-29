@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import SettingsNav from './SettingsNav';
 import AudioPlayer from './AudioPlayer';
+import { Authorize } from './Authorize';
 import settings from './Settings';
 
 const audio = document.createElement('audio') as any;
@@ -26,6 +27,8 @@ export class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <Authorize />
+        
         {!browserSupport && (
           <div className="warningMessage">
             <header>
@@ -41,8 +44,8 @@ export class App extends React.Component {
         )}
         {browserSupport && (
           <>
-            <div style={{"display": "none"}}>
-              <a id="downloader"></a>
+            <div>
+              <a href="#downloader" id="downloader">HELO</a>
               <input type="file" id="fileChooser" multiple />
               <audio id="audioElement" loop></audio>
             </div>

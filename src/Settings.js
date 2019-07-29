@@ -1,3 +1,5 @@
+ /* eslint-disable */
+
 var currentSongTitle = "Silence";
 
 // Utils
