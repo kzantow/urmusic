@@ -2,8 +2,9 @@ import React from 'react';
 import './App.css';
 import SettingsNav from './SettingsNav';
 import AudioPlayer from './AudioPlayer';
-import { Authorize } from './Authorize';
+import { Authorize, authenticate, loadClient, isAuthenticated } from './Authorize';
 import settings from './Settings';
+import { getApi } from './Gapi';
 
 const audio = document.createElement('audio') as any;
 const browserSupport = audio && (audio.captureStream || audio.mozCaptureStream);
@@ -55,6 +56,10 @@ export class App extends React.Component {
               <AudioPlayer />
             </div>
 
+            {/* {isAuthenticated() && ( */}
+              <button onClick={() => this.upload()}>Upload</button>
+            )}
+
             <canvas className="render" id="cvs"></canvas>
 
             <video id="recorded" playsInline loop></video>
@@ -75,6 +80,32 @@ export class App extends React.Component {
         )}
       </div>
     );
+  }
+  upload(): void {
+    authenticate().then(loadClient).then(() => {
+      getApi().then(gapi => {
+        const recordButton = document.querySelector('#record') as HTMLButtonElement;
+        const audio = document.querySelector('#audioElement') as HTMLAudioElement;
+        audio.pause();
+        audio.currentTime = 0;
+        audio.loop = false;
+
+        console.log('record!!!');
+        recordButton.click();
+
+        console.log('playing!!!');
+        audio.play();
+
+        const uploadWhenDone = () => {
+          console.log('done!!!')
+          recordButton.click();
+          audio.removeEventListener('ended', uploadWhenDone);
+        };
+        audio.addEventListener('ended', uploadWhenDone);
+
+        console.log(gapi.auth2.getAuthInstance().isSignedIn.get());
+      });
+    });
   }
 }
 

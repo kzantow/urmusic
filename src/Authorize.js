@@ -1,7 +1,15 @@
 import React from 'react';
 import { getApi } from './Gapi';
 
-function authenticate() {
+export function isAuthenticated() {
+  let auth = false;
+  getApi().then(gapi => {
+    auth = gapi.auth2.getAuthInstance().isSignedIn.get();
+  });
+  return auth;
+}
+
+export function authenticate() {
   return getApi().then(gapi => {
     if (!gapi.auth2.getAuthInstance().isSignedIn.get()) {
       return gapi.auth2.getAuthInstance()
@@ -13,14 +21,14 @@ function authenticate() {
     }
   });
 }
-function loadClient() {
+
+export function loadClient() {
   return getApi().then(gapi => {
     return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
         .then(function() { console.log("GAPI client loaded for API"); },
               function(err) { console.error("Error loading GAPI client for API", err); });
   });
 }
-
 
 export class Authorize extends React.Component {
   componentDidMount() {
@@ -42,7 +50,7 @@ export class Authorize extends React.Component {
   }
     render() {
         return (
-            <>
+            <div style={{position:'fixed',left:'50%'}}>
               <div id="my-signin2"></div>
                 <button onClick={() => {
                   // window.open(urlGoogle(), 'googleauth');
@@ -55,7 +63,7 @@ export class Authorize extends React.Component {
                 <button onClick={() => {
 
                 }}>Sign Out</button>
-            </>
+            </div>
         );
     }
 }
