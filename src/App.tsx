@@ -5,7 +5,6 @@ import AudioPlayer from './AudioPlayer';
 import { Authorize, authenticate, loadClient, isAuthenticated } from './Authorize';
 import settings from './Settings';
 import { getApi, googleConfig } from './Gapi';
-import { MediaUploader } from './MediaUploader';
 
 const audio = document.createElement('audio') as any;
 const browserSupport = audio && (audio.captureStream || audio.mozCaptureStream);
