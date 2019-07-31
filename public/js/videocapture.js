@@ -47,6 +47,8 @@ function handleDataAvailable(event) {
 function handleStop(event) {
   console.log('Recorder stopped: ', event);
   const superBuffer = new Blob(recordedBlobs, {type: 'video/webm'});
+  // FIXME this is an ugly global hack
+  if (window.onStopRecording) window.onStopRecording(superBuffer);
   video.src = window.URL.createObjectURL(superBuffer);
 }
 
